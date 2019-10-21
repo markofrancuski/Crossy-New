@@ -72,7 +72,6 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-
     public void FinishJump()
     {
         isJumping = false;
@@ -101,7 +100,6 @@ public class PlayerController : MonoBehaviour
     {
         scoreText.SetText(score.ToString());
     }
-
     private void OnCollisionEnter(Collision collision)
     {
         //Debug.Log(collision.gameObject.name);
@@ -140,13 +138,12 @@ public class PlayerController : MonoBehaviour
                 GameObject go = Instantiate(deathParticles[0]);
                 go.transform.position = gameObject.transform.position + new Vector3(0, 0.2f, 0);
                 break;
-            case "car": if(GameManager.instance.IsSoundEffectOn) deathAudioSource.PlayOneShot(deathSounds[1]); Instantiate(deathSounds[1], gameObject.transform.position, Quaternion.identity);  break;
+            case "car": if(GameManager.instance.IsSoundEffectOn) deathAudioSource.PlayOneShot(deathSounds[1]); Instantiate(deathParticles[1], gameObject.transform.position, Quaternion.identity);  break;
 
         }
         playerRenderer.enabled = false;
         //Instantiate();
     }
-
     private void ResetObject()
     {
         gameObject.transform.parent = null;
