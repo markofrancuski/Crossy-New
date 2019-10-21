@@ -173,22 +173,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13bf079913dc4e944b409b2170634cf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 1865918407045778544}
+  isDead: 0
   dirtParticle: {fileID: 96256515873656541, guid: 1d84284d30c21934eaaa940a2ff0a568,
     type: 3}
   mapGenerator: {fileID: 0}
-  DeathParticles:
-  - {fileID: 2223484372258700306, guid: ad8df6225d28db3238ff3be9ea7f4a79, type: 3}
+  deathParticles:
   - {fileID: 1243556870867224191, guid: b6a636f6092f849f1ac7d28d0a06ca06, type: 3}
-  DeathSounds:
+  deathSounds:
   - {fileID: 8300000, guid: 8bf0caa6e1a864c4f8b40f0fe7fd0f9e, type: 3}
   - {fileID: 8300000, guid: ffe649513a5f8944792e295c2b41e1b4, type: 3}
+  scoreText: {fileID: 0}
   audioSource: {fileID: 7222689731370852196}
   deathAudioSource: {fileID: 2942437042113571875}
-  scoreText: {fileID: 0}
   playerRenderer: {fileID: 7909706662258078181}
-  isSoundEffectOn: {fileID: 11400000, guid: 72bbd5df52eaaaa589854fe1ef377e95, type: 2}
-  isDead: 0
+  animator: {fileID: 1865918407045778544}
 --- !u!54 &7909706662713822801
 Rigidbody:
   m_ObjectHideFlags: 0

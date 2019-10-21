@@ -36,7 +36,7 @@ public class CameraController : MonoBehaviour
             
             //new Vector3(gameObject.transform.position.x +1, gameObject.transform.position.y, 0 );// Vector3.right;
 
-            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, nextPosition, Time.deltaTime * speed);  
+            Tween.Position(gameObject.transform, gameObject.transform.position, nextPosition, speed, 0);
 
         }
     }

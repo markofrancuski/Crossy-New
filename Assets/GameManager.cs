@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public delegate void RESETDELEGATE();
-    public RESETDELEGATE reset;
+    public delegate void ResetDelegate();
+    public ResetDelegate reset;
 
     public bool isStarted;
     public bool IsGameOver;
 
-    public GameObject GameOverCanvas;
+    public GameObject gameOverCanvas;
     [SerializeField] AudioSource audioSource;
 
     [SerializeField] private bool isMusicOn;
@@ -51,12 +51,12 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         IsGameOver = true;
-        GameOverCanvas.SetActive(true);
+        gameOverCanvas.SetActive(true);
     }
     public void OnResetButtonClick()
     {
         reset.Invoke();
-        GameOverCanvas.SetActive(false);
+        gameOverCanvas.SetActive(false);
         IsGameOver = false;
         isStarted = false;
     }

@@ -9,6 +9,8 @@ public class MapGenerator : MonoBehaviour
     public Vector3 positionToSpawn;
     [SerializeField] private int maxTerrains;
     [SerializeField] private int tempMax;
+    
+    [Header("")]
     [SerializeField] private List<TerrainData> terrains;
 
     [SerializeField]private List<GameObject> currentTerrains;
@@ -17,14 +19,15 @@ public class MapGenerator : MonoBehaviour
 
     [SerializeField] private TerrainData startingTerrain;
 
-
-
     private void Start()
     { 
         GameManager.instance.reset += ResetObject;
         tempMax = maxTerrains;
         SpawnStarting();
+    }
 
+    private void OnDisable(){
+        GameManager.instance.reset -= ResetObject;
     }
   
     public void SpawnStarting()

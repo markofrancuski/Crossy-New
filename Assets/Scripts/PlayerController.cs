@@ -2,18 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Pixelplacement;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
     private bool isJumping;
 
-    [SerializeField] private GameObject dirtParticle;
+    public bool isDead;
+
+    private float score;
+    private float oneSecTimer = 1;
+
+    [Header("Game Objects")] [SerializeField] private GameObject dirtParticle;
     [SerializeField] private MapGenerator mapGenerator;
-    [SerializeField] private List<GameObject> DeathParticles;
-    [SerializeField] private List<AudioClip> DeathSounds;
+    [SerializeField] private List<GameObject> deathParticles;
+    [SerializeField] private List<AudioClip> deathSounds;
+ 
+    [Header("UI References")]
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [Header("Components")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioSource deathAudioSource;
+    [SerializeField] private Renderer playerRenderer;
+    [SerializeField] private Animator animator;
 
     private void Start()
     {
@@ -76,18 +87,15 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("Jump");
         isJumping = true;
 
-        transform.position = transform.position + positionToMove;
+        Tween.Position(transform, transform.position, transform.position + positionToMove, 0.1f, 0);
+
+        //transform.position = transform.position + positionToMove;
 
         audioSource.Play();
 
         mapGenerator.SpawnTerrain(false, transform.position);
 
     }
-
-    [SerializeField] private TextMeshProUGUI scoreText;
-
-    private float score;
-    private float oneSecTimer = 1;
 
     private void UpdateScore()
     {
@@ -122,20 +130,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    [SerializeField] private Renderer playerRenderer;
-
-    public bool isDead;
     public void PlayDeathAnimation(string message)
     {
         isDead = true;
         switch (message)
         {
             case "water":
-                if(GameManager.instance.IsSoundEffectOn) deathAudioSource.PlayOneShot(DeathSounds[0]);
-                GameObject go = Instantiate(DeathParticles[0]);
+                if(GameManager.instance.IsSoundEffectOn) deathAudioSource.PlayOneShot(deathSounds[0]);
+                GameObject go = Instantiate(deathParticles[0]);
                 go.transform.position = gameObject.transform.position + new Vector3(0, 0.2f, 0);
                 break;
-            case "car": if(GameManager.instance.IsSoundEffectOn) deathAudioSource.PlayOneShot(DeathSounds[1]); Instantiate(DeathParticles[1], gameObject.transform.position, Quaternion.identity);  break;
+            case "car": if(GameManager.instance.IsSoundEffectOn) deathAudioSource.PlayOneShot(deathSounds[1]); Instantiate(deathSounds[1], gameObject.transform.position, Quaternion.identity);  break;
 
         }
         playerRenderer.enabled = false;
