@@ -107,8 +107,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  minSpeed: 3
+  maxSpeed: 4.5
   isLog: 1
-  timer: 0
 --- !u!114 &1436031114834246007
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -124,6 +124,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Renderer playerRenderer;
 
+    [SerializeField] private BoolValue isSoundEffectOn;
     public bool isDead;
     public void PlayDeathAnimation(string message)
     {
@@ -131,11 +132,11 @@ public class PlayerController : MonoBehaviour
         switch (message)
         {
             case "water":
-                deathAudioSource.PlayOneShot(DeathSounds[0]);
+                if(isSoundEffectOn.statValue) deathAudioSource.PlayOneShot(DeathSounds[0]);
                 GameObject go = Instantiate(DeathParticles[0]);
                 go.transform.position = gameObject.transform.position + new Vector3(0, 0.2f, 0);
                 break;
-            case "car": deathAudioSource.PlayOneShot(DeathSounds[1]); Instantiate(DeathParticles[1], gameObject.transform.position, Quaternion.identity);  break;
+            case "car": if(isSoundEffectOn.statValue) deathAudioSource.PlayOneShot(DeathSounds[1]); Instantiate(DeathParticles[1], gameObject.transform.position, Quaternion.identity);  break;
 
         }
         playerRenderer.enabled = false;

@@ -19,7 +19,7 @@ public class VisiblePlayer : MonoBehaviour
 
     private void OnBecameInvisible() 
     {
-        Debug.Log("Not visible");
+        //Debug.Log("Not visible");
         GameManager.instance.GameOver();
         if(!player.isDead) player.PlayDeathAnimation("car");
     }

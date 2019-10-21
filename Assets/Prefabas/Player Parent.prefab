@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 41f6e0abc8eaadb46820f6a9bcaed254, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -187,6 +187,8 @@ MonoBehaviour:
   deathAudioSource: {fileID: 2942437042113571875}
   scoreText: {fileID: 0}
   playerRenderer: {fileID: 7909706662258078181}
+  isSoundEffectOn: {fileID: 11400000, guid: 72bbd5df52eaaaa589854fe1ef377e95, type: 2}
+  isDead: 0
 --- !u!54 &7909706662713822801
 Rigidbody:
   m_ObjectHideFlags: 0
