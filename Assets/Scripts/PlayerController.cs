@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
     public void FinishJump()
     {
         isJumping = false;
-        Instantiate(dirtParticle, gameObject.transform.position + new Vector3(0, -0.5f, 0), Quaternion.identity);
+        Instantiate(dirtParticle, gameObject.transform.position + new Vector3(0, -0.45f, 0), Quaternion.identity);
     }
 
     private void MovePlayer(Vector3 positionToMove)
@@ -87,9 +87,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
 
     private float score;
+    private float oneSecTimer = 1;
+
+    private void UpdateScore()
+    {
+        scoreText.SetText(score.ToString());
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
+        //Debug.Log(collision.gameObject.name);
+
         if (collision.collider.GetComponent<MovingObject>() != null)
         {
             if(collision.collider.GetComponent<MovingObject>().isLog)
@@ -102,13 +110,24 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        score++;
+        if(!GameManager.instance.IsGameOver && GameManager.instance.isStarted)
+        {
+            oneSecTimer -= Time.deltaTime;
+            if(oneSecTimer <= 0)
+            {
+                oneSecTimer = 1;
+                score++;
+                UpdateScore();
+            }
+        }
     }
 
     [SerializeField] private Renderer playerRenderer;
 
+    public bool isDead;
     public void PlayDeathAnimation(string message)
     {
+        isDead = true;
         switch (message)
         {
             case "water":
@@ -119,16 +138,19 @@ public class PlayerController : MonoBehaviour
             case "car": deathAudioSource.PlayOneShot(DeathSounds[1]); Instantiate(DeathParticles[1], gameObject.transform.position, Quaternion.identity);  break;
 
         }
-
         playerRenderer.enabled = false;
         //Instantiate();
     }
 
     private void ResetObject()
     {
+        gameObject.transform.parent = null;
         gameObject.transform.position = new Vector3(0,1, 0);
         isJumping = false;
         score = 0;
         playerRenderer.enabled = true;
+        isDead = false;
+
     }
+
 }

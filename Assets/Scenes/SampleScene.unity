@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44300598, g: 0.49219567, b: 0.5719252, a: 1}
+  m_IndirectSpecularColor: {r: 0.44300598, g: 0.49219567, b: 0.57192516, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -410,6 +410,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 369597887}
   m_CullTransparentMesh: 0
+--- !u!1 &382405828
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 382405829}
+  m_Layer: 0
+  m_Name: Center
+  m_TagString: Untagged
+  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &382405829
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382405828}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5, y: 1.5, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 963194228}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &399942440
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,7 +564,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 9
   m_Type: 1
-  m_Color: {r: 0.45490196, g: 0.3764706, b: 0.17254902, a: 1}
+  m_Color: {r: 0.5568628, g: 0.5568628, b: 0.5568628, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -580,7 +610,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 1e-45, z: 3e-45, w: 4e-45}
+  m_BoundingSphereOverride: {x: 0.109375, y: 0.046875, z: 0.03515625, w: -0.046875}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -680,6 +710,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1297001520}
+  - {fileID: 382405829}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 30, y: 67.35, z: 0}
@@ -695,11 +726,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33176b7fd666f2143a650778694cad91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 7909706662713822796}
-  offset: {x: 0, y: 0, z: 0}
-  smoothness: 0.1
-  speed: 0.3
-  distance: 5
+  player: {fileID: 7909706662713822803}
+  speed: 0.6
+  center: {fileID: 382405829}
 --- !u!1 &1008039831
 GameObject:
   m_ObjectHideFlags: 0
@@ -1383,7 +1412,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1941111592}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1741,6 +1770,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: MapGenerator
       objectReference: {fileID: 0}
+    - target: {fileID: 4032006336001821634, guid: 3551956ee1183ec408a5983e97ca4dfb,
+        type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 1169892334}
+    - target: {fileID: 4032006336001821634, guid: 3551956ee1183ec408a5983e97ca4dfb,
+        type: 3}
+      propertyPath: maxTerrains
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4032006336001821634, guid: 3551956ee1183ec408a5983e97ca4dfb,
+        type: 3}
+      propertyPath: distanceFromPlayer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 4032006336001821633, guid: 3551956ee1183ec408a5983e97ca4dfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1795,21 +1839,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4032006336001821634, guid: 3551956ee1183ec408a5983e97ca4dfb,
-        type: 3}
-      propertyPath: parent
-      value: 
-      objectReference: {fileID: 1169892334}
-    - target: {fileID: 4032006336001821634, guid: 3551956ee1183ec408a5983e97ca4dfb,
-        type: 3}
-      propertyPath: maxTerrains
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4032006336001821634, guid: 3551956ee1183ec408a5983e97ca4dfb,
-        type: 3}
-      propertyPath: distanceFromPlayer
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3551956ee1183ec408a5983e97ca4dfb, type: 3}
@@ -1890,11 +1919,16 @@ PrefabInstance:
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 127399555}
+    - target: {fileID: 7909706662258078181, guid: e2e9767b84132ad42b33f7fd49b2e53d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 41f6e0abc8eaadb46820f6a9bcaed254, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2e9767b84132ad42b33f7fd49b2e53d, type: 3}
---- !u!1 &7909706662713822796 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8857562261423082843, guid: e2e9767b84132ad42b33f7fd49b2e53d,
+--- !u!4 &7909706662713822803 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1592322640264616311, guid: e2e9767b84132ad42b33f7fd49b2e53d,
     type: 3}
   m_PrefabInstance: {fileID: 7909706662713822795}
   m_PrefabAsset: {fileID: 0}

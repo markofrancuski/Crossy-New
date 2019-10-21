@@ -1,17 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pixelplacement;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
-
-    [SerializeField] private Vector3 offset;
-    [SerializeField] private float smoothness;
+    [SerializeField] private Transform player;
 
     [SerializeField] private float speed;
-    [SerializeField] private float distance;
     private Vector3 initialPosition;
+
+    [SerializeField] private Transform center;
+
+    private Vector3 nextPosition;
 
     float diff;
 
@@ -24,16 +25,19 @@ public class CameraController : MonoBehaviour
     {
         if (player != null && GameManager.instance.isStarted && !GameManager.instance.IsGameOver)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, player.transform.position.z);
+            diff = player.transform.position.x - center.position.x;
 
-            //transform.position = Vector3.Lerp(transform.position, player.transform.position + offset, smoothness);
+            if(diff  > 0)
+            {
+                Tween.Position(transform ,gameObject.transform.position, new Vector3(player.position.x, gameObject.transform.position.y, 0), 0.06f, 0f);
+                //gameObject.transform.position = new Vector3(player.position.x, 10, 0);
+            }
+            nextPosition = gameObject.transform.position + Vector3.right;
+            
+            //new Vector3(gameObject.transform.position.x +1, gameObject.transform.position.y, 0 );// Vector3.right;
 
-            transform.Translate(Vector3.up * Time.deltaTime * speed);
-            //diff = player.transform.position.x - gameObject.transform.position.x;
-            //Debug.Log(diff);
-            //if (diff >= distance) gameObject.transform.position += new Vector3(diff, 0, 0);
-            //else 
-            //gameObject.transform.position = 
+            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, nextPosition, Time.deltaTime * speed);  
+
         }
     }
 
