@@ -137,11 +137,15 @@ public class PlayerController : MonoBehaviour
                 if(GameManager.instance.IsSoundEffectOn) deathAudioSource.PlayOneShot(deathSounds[0]);
                 GameObject go = Instantiate(deathParticles[0]);
                 go.transform.position = gameObject.transform.position + new Vector3(0, 0.2f, 0);
+                playerRenderer.enabled = false;
                 break;
-            case "car": if(GameManager.instance.IsSoundEffectOn) deathAudioSource.PlayOneShot(deathSounds[1]); Instantiate(deathParticles[1], gameObject.transform.position, Quaternion.identity);  break;
-
+            case "car": 
+            if(GameManager.instance.IsSoundEffectOn) deathAudioSource.PlayOneShot(deathSounds[1]); 
+            //Instantiate(deathParticles[1], gameObject.transform.position, Quaternion.identity);  
+            animator.SetBool("Squash", true);
+            break;
         }
-        playerRenderer.enabled = false;
+        
         //Instantiate();
     }
     private void ResetObject()
@@ -152,6 +156,7 @@ public class PlayerController : MonoBehaviour
         score = 0;
         playerRenderer.enabled = true;
         isDead = false;
+        animator.SetBool("Squash", false);
 
     }
 
