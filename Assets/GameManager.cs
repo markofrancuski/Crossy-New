@@ -15,8 +15,25 @@ public class GameManager : MonoBehaviour
     public GameObject GameOverCanvas;
     [SerializeField] AudioSource audioSource;
 
-    [SerializeField] private BoolValue musicBool;
-    [SerializeField] private BoolValue soundEffectBool;
+    [SerializeField] private bool isMusicOn;
+    public bool IsMusicOn
+    {
+        get{return isMusicOn; }
+        set
+        {
+            isMusicOn = value; 
+            if(isMusicOn) audioSource.Play();
+            else audioSource.Stop();
+        }      
+    }
+    
+    [SerializeField] private bool isSoundEffectOn;
+    public bool IsSoundEffectOn
+    {
+        get{return isSoundEffectOn;}
+        set{isSoundEffectOn = value;}
+    }
+
     [SerializeField] private GameObject settingsCanvas;
 
     private void Awake()
@@ -27,7 +44,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        if(musicBool.statValue) audioSource.Play();
+        if(isMusicOn) audioSource.Play();
         else audioSource.Stop();
     }
 
@@ -46,25 +63,18 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Toggle musicToggle;
     [SerializeField] private Toggle soundEffectToggle;
+
     public void OnSettingsCanvasClicked()
     {
         settingsCanvas.SetActive(!settingsCanvas.activeInHierarchy);
-        
-        if(settingsCanvas.activeInHierarchy)
-        {
-            musicToggle.isOn = musicBool.statValue;
-            soundEffectToggle.isOn = soundEffectBool.statValue; 
-        }
     }
 
-    public void OnMusicSettingsChange()
+    public void OnMusicChanged()
     {
-        musicBool.statValue = !musicBool.statValue;
-        if(musicBool.statValue) audioSource.Play();
-        else audioSource.Stop();
+        IsMusicOn = !isMusicOn;
     }
-    public void OnSoundEffectSettingsChanged()
+    public void OnSoundEffectChanged()
     {
-         soundEffectBool.statValue = !soundEffectBool.statValue;
+        IsSoundEffectOn = !isSoundEffectOn;
     }
 }

@@ -438,7 +438,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1981301227}
-        m_MethodName: OnMusicSettingsChange
+        m_MethodName: OnMusicChanged
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -450,7 +450,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &369597887
 GameObject:
   m_ObjectHideFlags: 0
@@ -885,7 +885,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1981301227}
-        m_MethodName: OnSoundEffectSettingsChanged
+        m_MethodName: OnSoundEffectChanged
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -897,7 +897,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &600199409
 GameObject:
   m_ObjectHideFlags: 0
@@ -1195,7 +1195,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0.109375, y: 0.046875, z: 0.03515625, w: -0.046875}
+  m_BoundingSphereOverride: {x: 3.544e-42, y: 1.02e-43, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -2820,8 +2820,8 @@ MonoBehaviour:
   IsGameOver: 0
   GameOverCanvas: {fileID: 1364302136}
   audioSource: {fileID: 1981301229}
-  musicBool: {fileID: 11400000, guid: 86aabb30215faca009f4c806f6236fb6, type: 2}
-  soundEffectBool: {fileID: 11400000, guid: 72bbd5df52eaaaa589854fe1ef377e95, type: 2}
+  isMusicOn: 0
+  isSoundEffectOn: 0
   settingsCanvas: {fileID: 2004950882}
   musicToggle: {fileID: 278283102}
   soundEffectToggle: {fileID: 529870582}
